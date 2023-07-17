@@ -131,9 +131,29 @@ print(student_1)
 
 print(student_2 < student_1)
 
+def average_grade_sdudents (students, course):
+    grades_sum = 0
+    grades_count = 0
+    for student in students:
+        if course in student.courses_in_progress:
+            for grades in student.grades.values():
+                if course in student.grades:
+                    for grade in student.grades[course]:
+                        grades_sum += grade
+                        grades_count += 1
+    return grades_sum/grades_count
 
 
+def average_grade_lecturers (lecturers, course):
+    grades_sum = 0
+    grades_count = 0
+    for lecturer in lecturers:
+        if course in lecturer.courses_in_progress:
+            for grades in lecturer.grades.values():
+                if course in lecturer.grades:
+                    for grade in lecturer.grades[course]:
+                        grades_sum += grade
+                        grades_count += 1
+    return grades_sum/grades_count
 
 
-
-#реализовать функции
