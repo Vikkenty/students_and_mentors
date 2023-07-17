@@ -24,8 +24,14 @@ class Student:
             student_grade == sum(student.grades)/len(student.grades)
         return student_grade
 
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Not a Student!')
+            return
+        return self.student_grade < other.pstudent_grade
+
     def __str__ (self):
-        res = f'Имя: {self.name} \n Фамилия: {self.surname} \n Средняя оценка за домашние задания: {str(self.__average_rating_student)} \n Курсы в процессе изучения: {self.courses_in_progress} \n Завершенные курсы: {self.finished_courses}'
+        res = f'Имя: {self.name} \n Фамилия: {self.surname} \n Средняя оценка за домашние задания: {str(self.__average_rating_student)} \n Курсы в процессе изучения: {", ".join(self.courses_in_progress)} \n Завершенные курсы: {", ".join(self.finished_courses)}'
         return res
 
 
@@ -46,6 +52,12 @@ class Lecturer (Mentor):
         for grade in self.grades.values():
             lecturer_grade == sum(lecturer.grades)/len(lecturer.grades)
         return lecturer_grade
+
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Not a Lecturer!')
+            return
+        return self.lecturer_grade < other.lecturer_grade
 
     def __str__ (self):
         res = f'Имя: {self.name} \n Фамилия: {self.surname} \n Средняя оценка за лекции: {str(self.__average_rating_lecturer)}'
@@ -105,14 +117,10 @@ reviewer_2.rate_hw(student_1, 'Python', 8)
 reviewer_2.rate_hw(student_2, 'Python', 9)
 
 
-#best_student = Student('Ruoy', 'Eman', 'your_gender')
-#best_student.courses_in_progress += ['Python']
- 
-#cool_mentor = Mentor('Some', 'Buddy')
-#cool_mentor.courses_attached += ['Python']
- 
-#cool_mentor.rate_hw(best_student, 'Python', 10)
-#cool_mentor.rate_hw(best_student, 'Python', 10)
-#cool_mentor.rate_hw(best_student, 'Python', 10)
- 
-#print(best_student.grades)
+print(student_2.grades)
+
+print(student_1)
+
+print(student_2 < student_1)
+
+#реализовать функции
